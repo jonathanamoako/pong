@@ -10,7 +10,7 @@ package actors
 	{
 		private var controller:Controller;
 		private var speed:Number = 0;
-		private var _maxSpeed:Number = 30;
+		private var _maxSpeed:Number = 10;
 		public function set maxSpeed(m:Number):void
 		{
 			_maxSpeed = m;
