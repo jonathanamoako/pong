@@ -9,8 +9,8 @@ package actors
 	public class Player extends Paddle 
 	{
 		private var controller:Controller;
-		private var speed:Number = 0;
-		private var _maxSpeed:Number = 10;
+		private var speed:Number = 10;
+		private var _maxSpeed:Number = 30;
 		public function set maxSpeed(m:Number):void
 		{
 			_maxSpeed = m;
@@ -47,7 +47,6 @@ package actors
 			}
 			if (controller.fire)
 			{
-			addChild(new Ball());
 			}
 			this.y += speed;
 		}
