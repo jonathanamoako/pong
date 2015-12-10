@@ -18,6 +18,7 @@ package screens
 	 */
 	public class GameScreen extends Screen
 	{
+		private var obstacles:Array = [];
 		private var balls:Array = [];
 		private var paddles:Array = [];
 		private var scoreboard:Scoreboard;
@@ -59,7 +60,18 @@ package screens
 			addChild(scoreboard);
 			
 			this.addEventListener(Event.ENTER_FRAME, loop);
+			
+			for (var i:int = 0; i < 10; i++){
+		        obstacles.push(new Obstacle ());
+				this.addChild(obstacles [i]);
+				obstacles[i].x = Math.random() * stage.stageWidth;
+				obstacles[i].y = Math.random() * stage.stageHeight;
 		}		
+		
+		
+		
+		
+			};
 		
 		private function loop(e:Event):void 
 		{
@@ -77,6 +89,17 @@ package screens
 						balls[i].x += balls[i].xMove / 2;
 						
 						dispatchEvent(new Event(BALL_BOUNCE));
+					}
+					
+					for (var k:int = 0; k < obstacles.length; k++)
+					{
+						if (obstacles[k].hitTestObject(balls[i]))
+						{
+							balls[i].xMove *= -1;
+						    balls[i].x += balls[i].xMove / 1;
+						
+						    dispatchEvent(new Event(BALL_BOUNCE));
+						}
 					}
 				}
 			}
@@ -103,7 +126,7 @@ package screens
 		
 		private function checkScore():void 
 		{
-			if (scoreboard.player1 >= 100 || scoreboard.player2 >= 100)
+			if (scoreboard.player1 >= 10 || scoreboard.player2 >= 10)
 			{
 				destroy();
 				dispatchEvent(new Event(GAME_OVER));
